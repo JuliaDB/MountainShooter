@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-from code.Const import MENU_OPTION
+from code.Const import *        # ASTERISCO PUXA TUDO DO CONST
 
 
 class Menu:
@@ -11,22 +11,22 @@ class Menu:
         # COMO CARREGAR UMA IMAGEM NO MENU (BACKGROUND)
         self.surf = pygame.image.load('asset/Menu.png')
         self.rect = self.surf.get_rect(left=0, top=0)
+        self.menu_option = MENU_OPTION
 
     def run(self, ):
-        global menu_option
         pygame.mixer_music.load('./asset/Musica.mp3')  # CARREGA A MÚSICA
         pygame.mixer_music.play(-1)  # TOCA A MÚSICA SEM PARAR EM LOOP (-1 = loop infinito)
 
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(50, "Mountain", (255, 0, 0), ((580 / 2), 70))
-            self.menu_text(50, "Shooter", (255, 0, 0), ((580 / 2), 120))
+            self.menu_text(50, "Mountain", COLOR_RED, ((580 / 2), 70))
+            self.menu_text(50, "Shooter", COLOR_RED, ((580 / 2), 120))
 
             for i in range(len(MENU_OPTION)):
-                if i == menu_option:
-                    self.menu_text(20, MENU_OPTION[i], (255, 255, 0), ((580 / 2), 200 + 25 * i))
+                if i == self.menu_option[i]:
+                    self.menu_text(20, MENU_OPTION[i], COLOR_YELLOW, ((580 / 2), 200 + 25 * i))
                 else:
-                    self.menu_text(20, MENU_OPTION[i], (128, 128, 128), ((580 / 2), 200 + 25 * i))
+                    self.menu_text(20, MENU_OPTION[i], COLOR_GRAY, ((580 / 2), 200 + 25 * i))
 
             pygame.display.flip()
 
